@@ -545,8 +545,7 @@ UidOwnerMatchType TrafficController::jumpOpToMatch(BandwidthController::IptJumpO
     }
 }
 
-Status TrafficController::removeRule(BpfMap<uint32_t, UidOwnerValue>& map, uint32_t uid,
-                                     UidOwnerMatchType match, uint32_t ifBlacklistSlot) {
+Status TrafficController::removeRule(BpfMap<uint32_t, UidOwnerValue>& map, uint32_t uid, UidOwnerMatchType match, uint32_t ifBlacklistSlot) {
     if (match & IF_BLACKLIST && ifBlacklistSlot >= UID_MAX_IF_BLACKLIST) {
         return statusFromErrno(EINVAL, StringPrintf("Interface rule iface slot is out of range: %d",
                                                     ifBlacklistSlot));
@@ -581,8 +580,7 @@ Status TrafficController::removeRule(BpfMap<uint32_t, UidOwnerValue>& map, uint3
     return netdutils::status::ok;
 }
 
-Status TrafficController::addRule(BpfMap<uint32_t, UidOwnerValue>& map, uint32_t uid,
-                                  UidOwnerMatchType match, uint32_t iif, uint32_t ifBlacklistSlot) {
+Status TrafficController::addRule(BpfMap<uint32_t, UidOwnerValue>& map, uint32_t uid, UidOwnerMatchType match, uint32_t iif, uint32_t ifBlacklistSlot) {
     if ((match & IIF_MATCH) && (match & IF_BLACKLIST)) {
         return statusFromErrno(EINVAL, "Cannot match on IIF_MATCH and IF_BLACKLIST in the "
                                        "same addRule call");

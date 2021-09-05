@@ -152,7 +152,6 @@ public:
 
     std::map<std::string, QuotaInfo> mQuotaIfaces;
     std::set<std::string> mSharedQuotaIfaces;
-
     std::map<std::string /* interface name*/, std::vector<int /*appUid*/>> mRestrictAppsOnInterface;
 };
 
